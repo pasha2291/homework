@@ -33,7 +33,7 @@ public class MainOffice {
                 new FullName("Oleg", "Oleshkevich", "Ibragimovich"),
                 new Department(2, "Engineering", "office 902"),
                 new Contact("+375337777777"),
-                3,
+                4,
                 1800.0
         ) ;
         Worker alexander = new Worker(
