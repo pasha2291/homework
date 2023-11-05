@@ -1,7 +1,7 @@
 package com.solvd.service;
 
 import com.solvd.constant.BuildingType;
-import com.solvd.entity.SolvdEntity;
+import com.solvd.entity.Order;
 import lombok.experimental.UtilityClass;
 
 import java.util.Arrays;
@@ -37,14 +37,19 @@ public class Printer {
         printTwoOptionMessage();
     }
 
-    public static void printInteriorDecorationMessage() {
-        System.out.println(DECORATE_INTERIOR);
+    public static void printBuildFasterMessage(Order order) {
+        System.out.println(String.format(BUILD_FASTER, order.getBuildingType().getBasicWeeksToBuild()));
         printTwoOptionMessage();
     }
 
-    public static void printEntity(SolvdEntity entity) {
-        System.out.println(entity.entityToString());
-        System.out.println();
+    public static void printBuildFasterMessage(String message) {
+        System.out.println(message);
+        printTwoOptionMessage();
+    }
+
+    public static void printInteriorDecorationMessage() {
+        System.out.println(DECORATE_INTERIOR);
+        printTwoOptionMessage();
     }
 
     private static void printTwoOptionMessage() {
