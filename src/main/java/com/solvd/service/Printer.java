@@ -1,7 +1,6 @@
 package com.solvd.service;
 
 import com.solvd.constant.BuildingType;
-import com.solvd.entity.Order;
 import com.solvd.entity.SolvdEntity;
 import lombok.experimental.UtilityClass;
 
@@ -17,9 +16,6 @@ import static com.solvd.constant.Message.SAY_HELLO;
 
 @UtilityClass
 public class Printer {
-    public static void printMessage(String message) {
-        System.out.println(message);
-    }
 
     public static void printListOfBuildingOptions() {
         BuildingType[] buildings = BuildingType.values();
@@ -28,36 +24,33 @@ public class Printer {
         );
     }
 
-    public static void printBlankLine() {
-        System.out.println();
-    }
-
     public static void printBuildingChoiceMessage() {
-        printMessage(SAY_HELLO);
-        printBlankLine();
-        printMessage(BUILD_OPTIONS);
+        System.out.println(SAY_HELLO);
+        System.out.println();
+        System.out.println(BUILD_OPTIONS);
         printListOfBuildingOptions();
-        printMessage(INPUT_VARIANT);
+        System.out.println(INPUT_VARIANT);
     }
 
     public static void printBuildFasterMessage(BuildingType buildingType) {
-        printMessage(String.format(BUILD_FASTER, buildingType.getBasicWeeksToBuild()));
+        System.out.println(String.format(BUILD_FASTER, buildingType.getBasicWeeksToBuild()));
         printTwoOptionMessage();
     }
 
     public static void printInteriorDecorationMessage() {
-        printMessage(DECORATE_INTERIOR);
+        System.out.println(DECORATE_INTERIOR);
         printTwoOptionMessage();
     }
 
     public static void printEntity(SolvdEntity entity) {
         System.out.println(entity.entityToString());
+        System.out.println();
     }
 
     private static void printTwoOptionMessage() {
-        printMessage(OPTION_YES);
-        printMessage(OPTION_NO);
-        printBlankLine();
-        printMessage(INPUT_VARIANT);
+        System.out.println(OPTION_YES);
+        System.out.println(OPTION_NO);
+        System.out.println();
+        System.out.println(INPUT_VARIANT);
     }
 }

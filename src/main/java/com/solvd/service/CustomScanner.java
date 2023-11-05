@@ -6,22 +6,17 @@ import java.util.Scanner;
 
 import static com.solvd.constant.Message.ERROR;
 import static com.solvd.service.InputValidator.isInputValid;
-import static com.solvd.service.Printer.printMessage;
 
 @UtilityClass
 public class CustomScanner {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String scanUserInput() {
-        String input = scanInput();
+        String input = scanner.nextLine();
         while (!isInputValid(input)) {
-            printMessage(ERROR);
-            input = scanInput();
+            System.out.println(ERROR);
+            input = scanner.nextLine();
         }
         return input;
-    }
-
-    private static String scanInput() {
-      return scanner.nextLine();
     }
 }
