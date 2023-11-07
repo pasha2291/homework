@@ -10,6 +10,7 @@ public class Message {
     public static final String DECORATE_INTERIOR;
     public static final String INPUT_VARIANT;
     public static final String ERROR;
+    public static final String RESTART_APPLICATION;
     public static final String OPTION_YES;
     public static final String OPTION_NO;
 
@@ -19,7 +20,8 @@ public class Message {
         BUILD_FASTER = "Ммм, %s недель! Хотите построить объект быстрее?!";
         DECORATE_INTERIOR = "Отлично! Последний вопрос - дом хотите с внутренней отделкой?";
         INPUT_VARIANT = "Введите один из номеров вариантов, который Вам подходит >>>";
-        ERROR = "Некорректный ввод, пожалуйста введите номер нужного Вам варианта!";
+        ERROR = "При выполнении программы возникла ошибка:";
+        RESTART_APPLICATION = "Перезапустите программу!";
         OPTION_YES = "1. Да, конечно!";
         OPTION_NO = "2. Нет, не надо!";
     }

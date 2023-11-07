@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import static com.solvd.constant.CoefficientType.BUILD_FASTER;
 import static com.solvd.constant.CoefficientType.DECORATE_INTERIOR;
+import static com.solvd.service.CustomLogger.logInfo;
 
 @NoArgsConstructor
 @Getter
@@ -46,7 +47,7 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
 
     @Override
     public void printEntity() {
-        System.out.println(this.entityToString());
+        logInfo(this.entityToString());
     }
 
     @Override
