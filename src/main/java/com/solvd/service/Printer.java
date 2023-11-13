@@ -13,6 +13,7 @@ import static com.solvd.constant.Message.INPUT_VARIANT;
 import static com.solvd.constant.Message.OPTION_NO;
 import static com.solvd.constant.Message.OPTION_YES;
 import static com.solvd.constant.Message.SAY_HELLO;
+import static com.solvd.constant.Message.getMessage;
 import static com.solvd.service.CustomLogger.logInfo;
 
 @UtilityClass
@@ -26,19 +27,19 @@ public class Printer {
     }
 
     public static void printBuildingChoiceMessage() {
-        logInfo(SAY_HELLO);
-        logInfo(BUILD_OPTIONS);
+        logInfo(getMessage(SAY_HELLO));
+        logInfo(getMessage(BUILD_OPTIONS));
         printListOfBuildingOptions();
-        logInfo(INPUT_VARIANT);
+        logInfo(getMessage(INPUT_VARIANT));
     }
 
     public static void printBuildFasterMessage(BuildingType buildingType) {
-        logInfo(String.format(BUILD_FASTER, buildingType.getBasicWeeksToBuild()));
+        logInfo(String.format(getMessage(BUILD_FASTER), buildingType.getBasicWeeksToBuild()));
         printTwoOptionMessage();
     }
 
     public static void printBuildFasterMessage(Order order) {
-        logInfo(String.format(BUILD_FASTER, order.getBuildingType().getBasicWeeksToBuild()));
+        logInfo(String.format(getMessage(BUILD_FASTER), order.getBuildingType().getBasicWeeksToBuild()));
         printTwoOptionMessage();
     }
 
@@ -48,13 +49,13 @@ public class Printer {
     }
 
     public static void printInteriorDecorationMessage() {
-        logInfo(DECORATE_INTERIOR);
+        logInfo(getMessage(DECORATE_INTERIOR));
         printTwoOptionMessage();
     }
 
     private static void printTwoOptionMessage() {
-        logInfo(OPTION_YES);
-        logInfo(OPTION_NO);
-        logInfo(INPUT_VARIANT);
+        logInfo(getMessage(OPTION_YES));
+        logInfo(getMessage(OPTION_NO));
+        logInfo(getMessage(INPUT_VARIANT));
     }
 }

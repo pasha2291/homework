@@ -7,6 +7,7 @@ import lombok.experimental.UtilityClass;
 
 import static com.solvd.constant.Message.ERROR;
 import static com.solvd.constant.Message.RESTART_APPLICATION;
+import static com.solvd.constant.Message.getMessage;
 import static com.solvd.service.CustomLogger.logError;
 import static com.solvd.service.CustomScanner.scanUserInput;
 import static com.solvd.service.DynamicContext.getOrder;
@@ -41,9 +42,9 @@ public class Runner {
 
             profit.printEntity();
         } catch (CustomException e) {
-            logError(ERROR);
+            logError(getMessage(ERROR));
             logError(e.getMessage());
-            logError(RESTART_APPLICATION);
+            logError(getMessage(RESTART_APPLICATION));
             System.exit(1);
         }
     }
