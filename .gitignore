@@ -10,6 +10,9 @@
 # idea directory
 .idea/*
 
+# target directory
+target
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
