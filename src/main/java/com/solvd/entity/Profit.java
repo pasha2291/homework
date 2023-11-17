@@ -10,8 +10,8 @@ import com.solvd.exception.InvalidInteriorWorkProfitException;
 import com.solvd.exception.InvalidTotalPriceCalculationException;
 import lombok.AllArgsConstructor;
 
-import static com.solvd.constant.CoefficientType.BUILD_FASTER;
-import static com.solvd.constant.CoefficientType.DECORATE_INTERIOR;
+import static com.solvd.constant.CoefficientType.getBuildFasterCoefficients;
+import static com.solvd.constant.CoefficientType.getDecorateInteriorCoefficients;
 import static com.solvd.service.CustomLogger.logInfo;
 
 @AllArgsConstructor
@@ -27,8 +27,8 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
     public double getProfitFromBuildFast() throws InvalidBuildFastProfitException {
         double profit = 0.0;
         if(order.isBuildFaster()) {
-            double buildFastCost = order.getBuildingType().getBasicPrice() * BUILD_FASTER.getPriceCoefficient();
-            profit = buildFastCost * BUILD_FASTER.getCompanyProfit();
+            double buildFastCost = order.getBuildingType().getBasicPrice() * getBuildFasterCoefficients().get(0);
+            profit = buildFastCost * getBuildFasterCoefficients().get(2);
         }
         if(profit < 0.0) {
             throw new InvalidBuildFastProfitException("Profit from build fast work may not be less than 0.0: " + profit);
@@ -40,8 +40,8 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
     public double getProfitFromInteriorWork() throws InvalidInteriorWorkProfitException {
         double profit = 0.0;
         if(order.isDecorateInterior()){
-            double interiorWorkProfit = order.getBuildingType().getBasicPrice() * DECORATE_INTERIOR.getPriceCoefficient();
-            profit = interiorWorkProfit * DECORATE_INTERIOR.getCompanyProfit();
+            double interiorWorkProfit = order.getBuildingType().getBasicPrice() * getDecorateInteriorCoefficients().get(0);
+            profit = interiorWorkProfit * getDecorateInteriorCoefficients().get(2);
         }
         if(profit < 0.0) {
             throw new InvalidInteriorWorkProfitException("Profit from interior work may not be less than 0.0: " + profit);

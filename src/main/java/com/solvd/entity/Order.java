@@ -9,8 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import static com.solvd.constant.CoefficientType.BUILD_FASTER;
-import static com.solvd.constant.CoefficientType.DECORATE_INTERIOR;
+import static com.solvd.constant.CoefficientType.getBuildFasterCoefficients;
+import static com.solvd.constant.CoefficientType.getDecorateInteriorCoefficients;
 import static com.solvd.service.CustomLogger.logInfo;
 
 @NoArgsConstructor
@@ -25,10 +25,10 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
     public int calculateOrderTotalBuildingTime() {
         int buildingTimeWeeks = buildingType.getBasicWeeksToBuild();
         if(isBuildFaster) {
-            buildingTimeWeeks -= (buildingTimeWeeks * BUILD_FASTER.getTermCoefficient());
+            buildingTimeWeeks -= (buildingTimeWeeks * getBuildFasterCoefficients().get(1));
         }
         if(isDecorateInterior()) {
-            buildingTimeWeeks += (buildingTimeWeeks * DECORATE_INTERIOR.getTermCoefficient());
+            buildingTimeWeeks += (buildingTimeWeeks * getDecorateInteriorCoefficients().get(1));
         }
         return buildingTimeWeeks;
     }
@@ -37,10 +37,10 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
     public double calculateTotalPrice() {
         double totalPrice = buildingType.getBasicPrice();
         if(isBuildFaster) {
-            totalPrice += (totalPrice * BUILD_FASTER.getPriceCoefficient());
+            totalPrice += (totalPrice * getBuildFasterCoefficients().get(0));
         }
         if(isDecorateInterior) {
-            totalPrice += (totalPrice * DECORATE_INTERIOR.getPriceCoefficient());
+            totalPrice += (totalPrice * getDecorateInteriorCoefficients().get(0));
         }
         return Math.ceil(totalPrice);
     }
