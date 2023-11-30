@@ -11,6 +11,9 @@ import lombok.Setter;
 
 import static com.solvd.constant.CoefficientType.getBuildFasterCoefficients;
 import static com.solvd.constant.CoefficientType.getDecorateInteriorCoefficients;
+import static com.solvd.lambda_function.Functions.ADD_NEW_LINE;
+import static com.solvd.lambda_function.Functions.CAST_TO_INT;
+import static com.solvd.lambda_function.Functions.MULTIPLY;
 import static com.solvd.service.CustomLogger.logInfo;
 
 @NoArgsConstructor
@@ -23,7 +26,7 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
 
     @Override
     public int calculateOrderTotalBuildingTime() {
-        int buildingTimeWeeks = buildingType.getBasicWeeksToBuild();
+        int buildingTimeWeeks = CAST_TO_INT.applyAsInt(buildingType.getBasicWeeksToBuild());
         if(isBuildFaster) {
             buildingTimeWeeks -= (buildingTimeWeeks * getBuildFasterCoefficients().get(1));
         }
@@ -37,10 +40,10 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
     public double calculateTotalPrice() {
         double totalPrice = buildingType.getBasicPrice();
         if(isBuildFaster) {
-            totalPrice += (totalPrice * getBuildFasterCoefficients().get(0));
+            totalPrice += MULTIPLY.apply(totalPrice, getBuildFasterCoefficients().get(0));
         }
         if(isDecorateInterior) {
-            totalPrice += (totalPrice * getDecorateInteriorCoefficients().get(0));
+            totalPrice += MULTIPLY.apply(totalPrice, getDecorateInteriorCoefficients().get(0));
         }
         return Math.ceil(totalPrice);
     }
@@ -52,9 +55,9 @@ public final class Order implements SolvdEntityAction, TotalPriceCalculatorActio
 
     @Override
     public final String entityToString() {
-        return "ИТОГО ЗАКАЗ: \n" + buildingType.toString() + "С отделкой: " + isDecorateInterior + "\n"
-                + "Строим в две смены: " + isBuildFaster  + "\n"
-                + "Итого построим за: " + calculateOrderTotalBuildingTime() + " недель.\n"
-                + "Итоговая стоимость: " + calculateTotalPrice() + " $\n";
+        return ADD_NEW_LINE.apply("ИТОГО ЗАКАЗ: ") + buildingType.toString() + "С отделкой: " + ADD_NEW_LINE.apply(Boolean.toString(isDecorateInterior))
+                + "Строим в две смены: " + ADD_NEW_LINE.apply(Boolean.toString(isBuildFaster))
+                + "Итого построим за: " + calculateOrderTotalBuildingTime() + ADD_NEW_LINE.apply(" недель.")
+                + "Итоговая стоимость: " + calculateTotalPrice() + ADD_NEW_LINE.apply(" $");
     }
 }

@@ -12,6 +12,9 @@ import lombok.AllArgsConstructor;
 
 import static com.solvd.constant.CoefficientType.getBuildFasterCoefficients;
 import static com.solvd.constant.CoefficientType.getDecorateInteriorCoefficients;
+import static com.solvd.lambda_function.Functions.ADD_NEW_LINE;
+import static com.solvd.lambda_function.Functions.MULTIPLY;
+import static com.solvd.lambda_function.Functions.SUM_THREE_ARGUMENTS;
 import static com.solvd.service.CustomLogger.logInfo;
 
 @AllArgsConstructor
@@ -20,15 +23,15 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
 
     @Override
     public double getProfitFromBuilding() {
-        return order.getBuildingType().getBasicPrice() * order.getBuildingType().getNetProfit();
+        return MULTIPLY.apply(order.getBuildingType().getBasicPrice(), order.getBuildingType().getNetProfit());
     }
 
     @Override
     public double getProfitFromBuildFast() throws InvalidBuildFastProfitException {
         double profit = 0.0;
         if(order.isBuildFaster()) {
-            double buildFastCost = order.getBuildingType().getBasicPrice() * getBuildFasterCoefficients().get(0);
-            profit = buildFastCost * getBuildFasterCoefficients().get(2);
+            double buildFastCost = MULTIPLY.apply(order.getBuildingType().getBasicPrice(), getBuildFasterCoefficients().get(0));
+            profit = MULTIPLY.apply(buildFastCost, getBuildFasterCoefficients().get(2));
         }
         if(profit < 0.0) {
             throw new InvalidBuildFastProfitException("Profit from build fast work may not be less than 0.0: " + profit);
@@ -40,8 +43,8 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
     public double getProfitFromInteriorWork() throws InvalidInteriorWorkProfitException {
         double profit = 0.0;
         if(order.isDecorateInterior()){
-            double interiorWorkProfit = order.getBuildingType().getBasicPrice() * getDecorateInteriorCoefficients().get(0);
-            profit = interiorWorkProfit * getDecorateInteriorCoefficients().get(2);
+            double interiorWorkProfit = MULTIPLY.apply(order.getBuildingType().getBasicPrice(), getDecorateInteriorCoefficients().get(0));
+            profit = MULTIPLY.apply(interiorWorkProfit, getDecorateInteriorCoefficients().get(2));
         }
         if(profit < 0.0) {
             throw new InvalidInteriorWorkProfitException("Profit from interior work may not be less than 0.0: " + profit);
@@ -51,7 +54,7 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
 
     @Override
     public double calculateTotalPrice() throws CustomException {
-        double totalPrice = getProfitFromBuilding() + getProfitFromBuildFast() + getProfitFromInteriorWork();
+        double totalPrice = SUM_THREE_ARGUMENTS.apply(getProfitFromBuilding(), getProfitFromBuildFast(), getProfitFromInteriorWork());
         if(totalPrice <= 0.0) {
             throw new InvalidTotalPriceCalculationException("Total price may not be less or equal 0.0: " + totalPrice);
         }
@@ -65,9 +68,9 @@ public final class Profit implements SolvdEntityAction, TotalPriceCalculatorActi
 
     @Override
     public final String entityToString() throws CustomException {
-        return "Заказ принесет компании чистую прибыль: " + calculateTotalPrice() + " $\n"
-                + "Включая: \n"
-                + "За работу в две смены: " + getProfitFromBuildFast() + " $\n"
-                + "За внутреннюю отделку: " + getProfitFromInteriorWork() + " $\n";
+        return "Заказ принесет компании чистую прибыль: " + calculateTotalPrice() + ADD_NEW_LINE.apply(" $")
+                + ADD_NEW_LINE.apply("Включая: ")
+                + "За работу в две смены: " + getProfitFromBuildFast() + ADD_NEW_LINE.apply(" $")
+                + "За внутреннюю отделку: " + getProfitFromInteriorWork() + ADD_NEW_LINE.apply(" $");
     }
 }

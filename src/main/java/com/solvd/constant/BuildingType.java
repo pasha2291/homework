@@ -12,7 +12,7 @@ public enum BuildingType {
     COTTAGE(1, 15, 65000.0, 0.6);
 
     private int stories;
-    private int basicWeeksToBuild;
+    private double basicWeeksToBuild;
     private double basicPrice;
     private double netProfit;
 
