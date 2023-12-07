@@ -32,6 +32,6 @@ public class ReflectionAction {
                 .filter(constructor -> constructor.getParameterCount() == 0)
                 .findFirst()
                 .orElseThrow();
-        return  (T)defaultConstructor.newInstance();
+        return (T)defaultConstructor.newInstance();
     }
 }
