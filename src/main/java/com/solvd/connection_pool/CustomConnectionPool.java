@@ -1,4 +1,4 @@
-package com.solvd.multithreading.connection_pool;
+package com.solvd.connection_pool;
 
 import lombok.SneakyThrows;
 
