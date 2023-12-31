@@ -30,6 +30,11 @@
       <version>2.5.0</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>3.4.4</version>
+    </dependency>
   </dependencies>
 
   <build>
