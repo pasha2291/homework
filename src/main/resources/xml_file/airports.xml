@@ -1,0 +1,11 @@
+<airports>
+    <airport>
+        <airportCode>LHR</airportCode>
+    </airport>
+    <airport>
+        <airportCode>CDG</airportCode>
+    </airport>
+    <airport>
+        <airportCode>AMS</airportCode>
+    </airport>
+</airports>

@@ -1,0 +1,32 @@
+<departures>
+    <departure>
+        <airport>
+            <airportCode>MAD</airportCode>
+        </airport>
+        <city>
+            <name>Madrid</name>
+            <country>Spain</country>
+        </city>
+        <dateTime>2024-01-22T15:30:00</dateTime>
+    </departure>
+    <departure>
+        <airport>
+            <airportCode>MUC</airportCode>
+        </airport>
+        <city>
+            <name>Munich</name>
+            <country>Germany</country>
+        </city>
+        <dateTime>2024-01-20T07:45:00</dateTime>
+    </departure>
+    <departure>
+        <airport>
+            <airportCode>FRA</airportCode>
+        </airport>
+        <city>
+            <name>Frankfurt-am-Main</name>
+            <country>Germany</country>
+        </city>
+        <dateTime>2024-01-03T11:10:00</dateTime>
+    </departure>
+</departures>
