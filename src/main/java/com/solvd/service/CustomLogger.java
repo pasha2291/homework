@@ -12,4 +12,8 @@ public class CustomLogger {
     public static void logInfo(String message){
         logger.log(Level.INFO, message);
     }
+
+    public static void logError(String message) {
+        logger.log(Level.ERROR, message);
+    }
 }

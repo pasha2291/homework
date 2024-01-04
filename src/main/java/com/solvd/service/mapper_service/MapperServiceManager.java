@@ -1,6 +1,9 @@
 package com.solvd.service.mapper_service;
 
+import com.solvd.mapper.AirportMapper;
+import com.solvd.mapper.ArrivalMapper;
 import com.solvd.mapper.CityMapper;
+import com.solvd.mapper.DepartureMapper;
 import com.solvd.mapper.FlightMapper;
 import com.solvd.mapper.TicketMapper;
 import lombok.experimental.UtilityClass;
@@ -22,8 +25,10 @@ public class MapperServiceManager {
         Environment environment = new Environment("development", transactionFactory, getDataSource());
         Configuration configuration = new Configuration(environment);
         configuration.addMapper(CityMapper.class);
-        configuration.addMapper(FlightMapper.class);
+        configuration.addMapper(ArrivalMapper.class);
+        configuration.addMapper(DepartureMapper.class);
         configuration.addMapper(TicketMapper.class);
+        configuration.addMapper(AirportMapper.class);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         return sqlSessionFactory.openSession();
     }

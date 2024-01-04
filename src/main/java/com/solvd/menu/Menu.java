@@ -14,7 +14,8 @@ public class Menu {
 
     public static void printMainMenu(TableType type) {
         String message = "Для таблицы " + type.name() + " Вам доступны следующие опции:\n 1. Показать все записи таблицы.\n " +
-                "2. Удалить запись по id.\n 3. Добавить запись в таблицу.\n";
+                "2. Удалить запись по id.\n3. Добавить записи в таблицу из ресурсов (DOM).\n" +
+                "4. Добавить записи в таблицу из ресурсов (JAXP).\n";
         logInfo(message);
     }
 

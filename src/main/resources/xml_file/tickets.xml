@@ -1,0 +1,14 @@
+<tickets>
+    <ticket>
+        <flightId>22</flightId>
+        <cost>1300</cost>
+    </ticket>
+    <ticket>
+        <flightId>23</flightId>
+        <cost>500</cost>
+    </ticket>
+    <ticket>
+        <flightId>24</flightId>
+        <cost>275</cost>
+    </ticket>
+</tickets>

@@ -1,0 +1,14 @@
+<cities>
+    <city>
+        <name>Madrid</name>
+        <country>Spain</country>
+    </city>
+    <city>
+        <name>Toronto</name>
+        <country>Canada</country>
+    </city>
+    <city>
+        <name>Minsk</name>
+        <country>Belarus</country>
+    </city>
+</cities>

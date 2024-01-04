@@ -1,5 +1,5 @@
 package com.solvd.constant;
 
 public enum TableType {
-    CITY, FLIGHT, TICKET
+    AIRPORT, ARRIVAL, DEPARTURE, CITY, TICKET
 }
